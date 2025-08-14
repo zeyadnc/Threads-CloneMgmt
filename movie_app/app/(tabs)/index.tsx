@@ -1,12 +1,11 @@
 import {  ActivityIndicator,ScrollView,Image, Text, View, FlatList } from "react-native";
-import { useEffect } from "react";
 
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
-import { fetchPopularMovies, testFetch } from "@/services/api";
+import { fetchPopularMovies } from "@/services/api";
 
 export default function Index() {
 const router=useRouter();
@@ -17,15 +16,7 @@ const {data:movies,
   query:''
 }));
 
-// Debug logging
-console.log('Movies data:', movies);
-console.log('Loading:', moviesLoading);
-console.log('Error:', moviesError);
 
-// Test basic fetch functionality
-useEffect(() => {
-  testFetch();
-}, []);
 
   return (
     <View className="flex-1 bg-primary">
@@ -86,7 +77,7 @@ useEffect(() => {
                       </View>
                     )}
                     keyExtractor={(item)=>item.id?.toString() || item.title}
-                    numColumns={2}
+                    numColumns={3}
                     columnWrapperStyle={{
                       justifyContent:"space-between",
                       gap:15,
